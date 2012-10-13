@@ -31,8 +31,8 @@ Markdown is a markup language invented by [John Gruber][johngruber] and you can 
 
 Most of the beautiful HTML/CSS Themes are based on [twitter's bootstrap][bootstrap] and [Thomas Park's awesome set of free Themes for it][bootswatch].
 
-  [githubwiki]: http://github.com/Dynalon/mdown-wiki
-  [githubcode]: http://github.com/Dynalon/mdown
+  [githubwiki]: http://github.com/Dynalon/markdownio-wiki
+  [githubcode]: http://github.com/Dynalon/markdownio
   [johngruber]: http://twitter.com/gruber
   [daringfireball]: http://daringfireball.net/projects/markdown/
   [bootstrap]: http://getbootstrap.com

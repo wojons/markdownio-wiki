@@ -12,7 +12,7 @@ For the more Markdown-interested reader, there exist plenty of beginner tutorial
 
   [johngruber]: http://daringfireball.net/projects/markdown/syntax
   [daringfireball]: http://daringfireball.net/projects/markdown/syntax
-  [wiki]: http://www.github.com/Dynalon/mdown-wiki
+  [wiki]: http://www.github.com/Dynalon/markdownio-wiki
 
 Additions and deviations to standard Markdown
 ----------------------------------------------
