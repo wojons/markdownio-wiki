@@ -1,0 +1,11 @@
+[Introduction](index.txt)
+[Quick start](quickstart.txt)
+[Syntax](syntax.txt)
+[Layout](layout.txt)
+[Gimmicks](gimmicks.txt)
+[Configuration](configuration.txt)
+[Theming](theming.txt)
+
+[gimmick:ForkMeOnGithub({ color: 'red', position: 'right'})](https://github.com/Dynalon/markdownio-wiki)
+
+

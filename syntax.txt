@@ -1,0 +1,163 @@
+Syntax
+=======
+
+Learning Markdown
+-----------------
+
+To create any content with markdown.io, you need to write the content in a special markup language, called [Markdown][daringfireball]. Markdown was invented by [John Gruber][johngruber], and allows focusing on actually writing content, instead of messing around with layout and appearance.
+
+Markdown is very easy to write, and usually there is no need to read any documentation about it in the first place. Looking at some examples will provide enough insight so that you can immediately start writing Markdown yourself.
+
+For the more Markdown-interested reader, there exist plenty of beginner tutorials. A good place to start is [John Gruber's syntax documentation][daringfireball] itself.
+
+  [johngruber]: http://daringfireball.net/projects/markdown/syntax
+  [daringfireball]: http://daringfireball.net/projects/markdown/syntax
+  [wiki]: http://www.github.com/Dynalon/mdown-wiki
+
+Additions and deviations to standard Markdown
+----------------------------------------------
+
+Although markdown.io parses regular Markdown, there are some syntax differences that should be noted:
+
+- *Line wrapping*: Any newline character will result in an actual line break in the resulting HTML file (using a `<br />` tag):
+
+	This text spans
+	across two lines
+
+- *Codeblocks*: Besides using indented text, you can surround any verbatim codeblocks with leading and trailing triple backticks: \`\`\` 
+
+The above changes align with [GitHub Flavoured Markdown][githubmarkdown].
+
+  [githubmarkdown]: http://github.github.com/github-flavored-markdown/
+
+- *Right-align*: Tables are not supported in plain Markdown, but you can pull text to the right to create a table-like look by seperating the text by 2 tabs or 4 spaces in between:
+
+	Caesar Salad		$8.20
+	Hamburger			$6.70
+	Cheeseburger		$7.20
+
+will render as:
+
+Caesar Salad		$8.20
+Hamburger			$6.70
+Cheeseburger		$7.20
+
+In-page anchors
+---------------
+
+All headings are automatically transformed to named anchors, you can reference them from any link by appending the `#` character and repeat the text in the heading:
+
+
+	[Jump up](#Learning Markdown)
+
+You can also reference the in-page anchors by replacing all spaces with the underscore `_` character:
+
+	[Jump up](#Learning_Markdown)
+
+Examples:
+[Jump up to Learning Markdown](#Learning_Markdown)
+[Jump to this paragraph](syntax.txt#In-page anchors)
+[Jump to Credits](index.txt#Credits)
+
+Creating a navigation menu
+--------------------------
+
+To create a Menu at the top of your website, simply put a file called navigation.txt into the same directory as your Markdown file, and will automatically be used. You should only put a list of links seperated by a line break or blank line in there! If you put anything else but links (or [Gimmicks](#Gimmicks)), expect ugly output.
+
+Example of a navigation.txt file:
+
+	[Introduction](index.txt)
+	[Quick start](quickstart.txt)
+	[Examples](examples.txt)
+	[Syntax](syntax.txt)	
+
+Grouping of images
+------------------
+
+Usually, the theme specifies the size of an image on the page. So if you embed an image, it will get scaled by the browser's HTML rendering engine. You can control the size and layout of the image(s) by grouping them together:
+	
+	![Moon](img/moon.jpg "Earth's Moon")
+	![Mars](img/mars-planet.jpg "Planet Mars")
+
+Will align the two images next to each other:
+
+![Moon](img/moon.jpg "Earth's Moon")
+![Mars](img/mars-planet.jpg "Planet Mars")
+
+If you put an empty line between the images, they will stretch up to the actual width of the image, but at max to the width of the page:
+
+	![Moon](img/moon.jpg "Earth's Moon")
+
+	![Mars](img/mars-planet.jpg "Planet Mars")
+
+Will render as:
+
+![Moon](img/moon.jpg "Earth's Moon")
+
+![Mars](img/mars-planet.jpg "Planet Mars")
+
+Automatic galleries
+-------------------
+
+All images that are grouped together are automatically put into a gallery. Just click on the images above to see the results.
+
+Images that are also hyperlinks to other websites, are *not* put into a gallery:
+
+	[![](img/moon-small.jpg)](http://www.nasa.gov/mission_pages/apollo/)
+
+Example of a linked image that will have *no* gallery:
+
+[![](img/moon-small.jpg)](http://www.nasa.gov/mission_pages/apollo/) 
+
+Gimmicks
+--------
+
+Gimmicks are special links that trigger some JavaScript code. For example, if you want to embed a youtube video into your page, you can use the *youtube gimmick*: Just place a link with an empty caption and the link to the target video:
+
+	[](http://www.youtube.com/watch?v=RMINSD7MmT4)
+
+will display as:
+
+[](http://www.youtube.com/watch?v=RMINSD7MmT4)
+
+- - -
+
+Some Gimmicks are just smart links, that analyse the target website (like youtube in this case). Others require specific syntax, like the [Google Maps Gimmick][mapsgimmick]:
+
+	[gimmick:GoogleMaps](Times Square, New York City)
+
+Will display as:
+
+[gimmick:GoogleMaps](Times Square, New York City)
+
+Gimmicks are very powerfull and offer vast functionality to your markdown website. There are lots more Gimmicks available, see the [Gimmicks page](gimmicks.txt) for a full list of available Gimmicks, and learn how to create your own.
+
+  [mapsgimmick]: gimmicks.txt#Google_Maps
+
+Inclusion of files
+------------------
+
+You can include standalone markdown files from within another markdown file. Those files are fetched and included in the markdown output, just before the page is rendered.
+
+### Preview include another markdown file
+
+You can use a specially crafted link to include a preview of another markdown file: [3]\(preview:otherfile.txt\)
+
+The number in the square brackets is the amount of paragraphs to preview in the document and is optional (default is 4), while the part after `preview:` is a reference to another markdown file. Note that only relative links are allowed.
+
+At the end of the content of a `preview:` link, a *Read more* link is automatically placed that will lead to the full markdown file.
+
+This is a preview that includes the *Introduction* page from this wiki by 3 paragraphs:
+
+- - -
+[3](preview:index.txt)
+- - -
+
+### Fully include another markdown file
+
+Works similar as `preview:` links, but instead will include the whole markdown before it is rendered: 
+
+[]\(include:otherfile.txt\)
+
+Using the `preview:` link can be used in a blog to link to single blog posts, where each post is a single file, while the `include:` link can be used to combine larger sections and split them out through several markdown files.
+

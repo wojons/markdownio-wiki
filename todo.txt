@@ -1,0 +1,16 @@
+# TODO
+
+* Umlautproblem lösen!
+* config.json
+
+* httpClient is sehr buggy
+  * da andere threads beim parallelen ausführen, ist Connection.Config und Connection.Logger nicht gesetzt
+	  * Config objekt evntl im constructor übergeben?
+  * keepalive auf false bei FetchExternalMarkdown - ist es das wert/performanz?
+  * RequestHeaders - manche Header lassen sich nicht über .Add (string,string) setzen, sondern nur über das Request. property (user-agent, evntl cache-control)
+  * cache-control für FetchExternalMarkdown muss richtig gestzt werden - nur bei reloads nachfragen, sonst sogar 404 aus dem cache verwenden
+     * SQUID
+
+* Hintergrundbild via _bg und config.json und background.{jpg} oder gimmick?
+
+

@@ -1,0 +1,72 @@
+Quick Start
+===========
+
+In this tutorial, we will create a very basic website. *No knowledge of HTML or any other complex technologies is required!*.
+
+You start by creating a so called *Markdown file*, which is nothing more than a standard text file (with a .txt ending). You then start to write your content into this file. But since simple text files don't offer any method to provide formating, you use a special markup language called *Markdown*. This is how an example Markdown file may look like:
+
+	Welcome!	
+	=======
+
+	Welcome visitor, this is my new website! I utilize *Markdown* to create
+
+	* easy
+	* shiny
+	* human readable 
+	* and good looking
+
+	websites, by viewing my Markdown files through the [markdown.io](http://www.markdown.io) Markdown beautifier.
+
+	Links can be created, i.e. check out this [link to google](http://www.google.com)
+
+	Images are quite similiar to links, but with a leading ! before them:
+
+	![An image of Neil Armstrong](img/first-man-on-moon.jpg "Neil Armstrong was the first man on the moon")
+
+
+The above example will look like this:
+* * *
+
+Welcome!	
+=======
+
+Welcome visitor, this is my new website! I utilize *Markdown* to create
+
+* easy
+* shiny
+* human readable 
+* and good looking
+
+websites, by viewing my Markdown files through the [markdown.io](http://www.markdown.io) Markdown beautifier.
+
+Links can be created, i.e. check out this [link to google](http://www.google.com)
+
+Images are quite similiar to links, but with a leading ! before them:
+
+![An image of Neil Armstrong](img/first-man-on-moon.jpg "Neil Armstrong was the first man on the moon")
+
+* * *
+
+Publishing your file into the Web
+---------------------------------
+
+Creating the Markdown file wasn't to hard, was it? We will now need to put that file somewhere on web. The easiest way to do that, is to use a cloud storage provider like [Wuala](http://www.wuala.com) or [Dropbox](http://dropbox.com). If you don't have a cloud storage account, you can sign up for one, it's free! Else, you can of course use any other cloud storage provider or webspace.
+
+With Dropbox, it is as easy as putting your markdown text file from above into your *Public* folder, right click on it and select "Get public link".
+
+Making a website out of it
+--------------------------
+
+All you have to do then, is go to [the markdown.io website](http://www.markdown.io) and put that URL in the box and hit the "Go!" button.
+
+Next steps
+----------
+
+* Learn the power of Markdown
+
+Of course, this basic example uses only few features of Markdown. If you want to learn more about Markdown and it's syntax (it is easy, promised!), check out the [Syntax](syntax.txt) page.
+
+* Customizing / Theming
+
+When you get comfortable with the syntax, you might want to learn about how to use your own domain or how to create a custom-looking theme for your website. You can do this, check out the [Theming section](theming.txt).
+

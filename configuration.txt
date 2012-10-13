@@ -1,0 +1,162 @@
+Configuration
+=============
+
+markdown.io aims to be simple of use for *everyone*. So basically you can start with a simple Markdown file, and get a pretty result without doing anything. Advanced users however need the possibility to tweak how markdown.io constructs and renders a website, in order to get the best out of their wiki, blog or whatever. 
+
+### Table of  contents
+
+1. [Underscore parameters](#Underscore_parameters)
+2. [Using your own Domain](#Using_your_own_domain)
+3. [Permanently store your settings using config.json](#config.json)
+
+
+* * *
+
+Underscore parameters
+---------------------
+
+There are a number of underscore parameters that you can use within the markdown.io URL to modify your website's behaviour. The underscore parameters start with an underscore `_` and may be followed by an equal sign `=`, eventually followed by the value of the parameter.
+
+Example:
+
+	http://markdown.io/_theme=readable/_nav=0/http://www.urltomywebsite.com/index.txt
+
+The above link will show your website using the *readable* theme, and will disable a top navigation menu.
+
+Not all underscore parameter require a value, like for example the `_raw` parameter:
+
+	http://markdown.io/_raw/http://www.urltomywebsite.com/index.txt
+
+This will show the source markdown as plaintext instead of displaying the rendered HTML output. 
+
+List of all underscore parameters:
+
+* `_theme=` 
+	* *value*: The name of the theme as string
+	* selects the theme that is used to render the HTML output
+* `_nav=`
+	* *value*: 0/1 or true/false 
+	* indicates whether or not to use a navigation.txt file for displaying a navigation menu
+* `_title=`
+	* *value*: A string representing the title. May contain spaces, underscore, dash, simple characters and numbers.
+	* A website title that is displayed in the browser window bar and on each page as a heading at the position and style that a themes specifies.
+	* Since spaces produce ugly url output, all underscores will be replaced with spaces when displaying the title.
+		* Example: `_title=My_blog` will display your title as `My blog`
+* `_raw`
+  * *value*: none
+  * when present, shows the raw markup code as plaintext instead of rendering any HTML
+* `_rawhtml`
+  * *value*: none
+  * shows the raw html code with no theming or styling applied. Corresponds (almost) to the output of the original markdown perl implementation.
+
+* * *
+
+Using your own domain
+---------------------
+
+If you think that a long url like `http://markdown.io/_theme=simplex/http://mywebsite.com/mymarkdown.txt` is way too long, then your are absolutely right. That's why there is the possibility to generate a bit.ly shortened URL when you [visit the markdown.io website](http://www.markdown.io).
+
+If you for some reasons do not want a bit.ly short url, but your own .com/.de/.org/whatever domain, (like this wiki does with <http://wiki.markdown.io>), here is what you have to do:
+
+### 1. Get a domain
+Find a domain registrar to register your domains with. It's adviced to pick a provider that allows you to manipulate the nameserver entries for it, as you will need to create a CNAME and a TXT entry in order to use your own domain. I've some good experience with [DomainFactory][df] and [Gossimer][gossimer] and both bring free web administration of the nameserver entries.
+
+
+  [df]: http://www.df.eu
+  [gossimer]: http://www.gossimer.net
+
+Let's say you have registered `example.com` and want it to point at some Markdown document in your Dropbox.
+
+### 2. Create a CNAME record 
+
+You need to create a subdomain `www.example.com` and add a CNAME entry for that subdomain pointing at markdown.io:
+
+	www.example.com 		CNAME		markdown.io
+
+**ATTENTION**: You absolutely *have* to use the `www.` subdomain, or any other subdomain but **not** add a CNAME or A entry to the first-level domain (`example.com`) without further subdomaining. CNAME entries are just not allowed for first-level domains!
+
+If you use `www.` as a Subdomain, your website will still be reachable under `http://example.com` since all modern browsers will prepend the `www.` if the DNS resolution fails. So make sure you **don't** have an A record set for `example.com`.
+
+
+### 3. Adding a TXT record
+
+Once you have created that CNAME record, you need to add a TXT record for the subdomain `txtrecord.www.example.com`. A TXT record can hold arbitrary ASCII data, and we will put in the full markdown.io address of your website:
+	
+	txtrecord.www.example.com 		TXT 	http://markdown.io/https://dl.dropbox.com/u/14469783/mdown-wiki/index.txt
+
+If you want to apply another theme, or tweak any other setting, you can prepend any [underscore parameter](#Underscore_parameter) like _theme in the target URL:
+
+	txtrecord.www.example.com 		TXT 	http://markdown.io/_theme=readable/https://dl.dropbox.com/u/14469783/mdown-wiki/index.txt
+
+If you supply any underscore parameters, they will be used for displaying when visiting the website via your custom domain. The `_title` parameter is a perfect candidate that you will likely want to add to the TXT record:
+
+	txtrecord.www.example.com 		TXT 	http://markdown.io/_title=My blog/_theme=readable/https://dl.dropbox.com/u/14469783/mdown-wiki/index.txt
+
+If you've done everything right, your Markdown will be accesible under your new domain. Note that DNS entries are cached and it may take up to 48h until your changes will take effect.
+
+* * *
+
+config.json 
+------------
+
+If you consider yourself to be an experienced user, have some knowledge of HTML, CSS, Javascript and other web technologies, you can manipulate a lot of markdown.io behaviour through the `config.json` file.
+
+Whenever you request given markdown content through the markdown.io url, it will start another webrequest to look for a `navigation.txt` and a `config.json` file in the same directory as the original markdown file. While the navigation.txt is used to build a navigation menu at the top of the page, the config.json can be used to specify options that will influence the page rendering.
+
+Both files are completely optional, so if none of the files can be found, the default options are used.
+
+The config.json  **must** be in [valid JSON format](http://www.w3schools.com/json/default.asp) and contain a list of parameters that define how a markdown page rendered into HTML.
+
+Here is a basic example of a `config.json`:
+
+```
+{
+	"Theme" : "spacelab",
+	"Title": "markdown.io Wiki",
+	"Css":		[
+		"http://webspace.markdown.io/custom/mystyles.css"
+	],
+	"StandaloneCss": false,
+	"Javascript":	[
+		"http://webspace.markdown.io/custom/myscript.js"
+	],
+	"Navigation": "navigation.txt",
+}
+```
+
+Warning: The JSON must be valid, else parsing will fail. Please check your config.json on sites like [JSONLint](http://jsonlint.com/)!
+
+As you can see, the format is pretty straightforward. The JSON object contains a list of keys, like `Theme`, `Menu` and `Title` and the according values. All keys are optional, and keys are case sensitive. Values can be either of basic string types, but there are also keys that use arrays as values (like the `Css` option).
+
+Here is a list of all valid key/value pairs and their meaning:
+
+* `Theme`
+	* Type: **string**
+	* Select the theme that is used for rendering the website. The theme is identified by name and selects one of the predefined themes from markdown.io.
+
+* `Title`
+	* Type: **string**
+	* Specifies which title to use for the website. Since config.json applies to *all* files in a directory, you can use this to have a title for all pages, without repeating it in every file. Putting the `Title` key into the config.json has the same effect as using the `_theme=` parameter in the request url.
+
+* `Css`
+	* Type: **array of string**
+	* Default: []
+	* List of urls (relative or absolute) to .css files that will be linked to in the website. If the `Css` key is given and non-empty, the css files will be linked in the page *in addition* to those of the theme. This can be used to tweak the appearance of a theme with smaller css changes, to make a theme better suit your needs (see [Theming](theming.txt) ).
+
+* `StandaloneCss`
+	* Type: **boolean**
+	* Default: **false**
+	* If set set to `true`, the predefined theme styles will not be loaded at all, only the ones provided in the `Css` option will. This can be used for creating your own, fully custom themes. Currently it is required to use the [bootstrap css framework][bootstrap] to theme a page. This will likely change in the future to allow custom css frameworks.
+
+  [bootstrap]: http://getbootstrap.com
+
+* `Javascript`
+	* Type: **array of string**
+	* Default: **[]**
+	* List of urls (relative or absolute) to Javascript files (.js) that will be embedded to the website via `<script>` tags. Can be used to load custom gimmicks, but can hold arbitrary Javascript in general. See [adding Javascript](theming.txt#Adding_Javascript).
+
+* `Navigation`
+	* Type: **string**
+	* Default: **navigation.txt**
+	* Specifies which file to use for the navigation menu. It is highly adviced that you don't use this configuration key, as the default navigation.txt is always prefetched at the same time config.json is. So if you provide a custom filename, another HTTP request has to be done which slows down the page load time. Should only be used if you really want another filename for the navigation file, or another file ending (like .md).
+

@@ -1,0 +1,119 @@
+Theming
+========
+
+Step-by-Step tutorial
+---------------------
+
+This page will guide you through the steps necessary to create a custom-looking theme for your website. Markdown.io is heavily based on [twitter's bootstrap css framework][bootstrap], and it is currently necessary to use bootstrap when creating your own theme. But this means also, if you already got a bootstrap theme from any other website, you can likely use it together with markdown.io. If you are unfamiliar with bootstrap, take a look at [their website][bootstrap], it is really easy to learn and very well documented with lots of examples. There are also lots of ressources and pre-built themes, i.e. [bootswatch][bootswatch] whose themes are already pre-shipped on markdown.io, and other commercial sites like [wrapbootstrap.com][wrapbootstrap].
+
+Note that the restriction of using bootstrap is planned to be removed in future versions, but right now you have to use it.
+
+  [bootstrap]: http://getbootstrap.com
+  [bootswatch]: http://bootswatch.com
+  [wrapbootstrap]: https://wrapbootstrap.com
+
+
+### 1. Creating the Bootstrap .css file
+
+You start by creating a bootstrap.css (or better bootstrap.min.css) using the documentation available on the [bootstrap website][bootstrap]. For this task, you don't have to use markdown.io, as you can theme against any other valid bootstrap html skeleton.
+
+Attention: markdown.io currently uses only the non-fluid variation of bootstrap. Do not include any styling information for a fluid layout!
+
+### 2. Create a config.json
+
+Once you are done, place the bootstrap.css into your websites root folder. Also within the root folder, create a [config.json](configuration.txt#config.json) file to apply the style:
+
+
+```
+{
+	"Css": [
+		"bootstrap.css",
+		"http://assets.markdown.io/themes/bootstrap-assets/common.css"
+	],
+	"StandaloneCss": true
+}
+```
+
+As you can se we added another url pointing to a common.css file on the markdown.io page. This common.css file should always be included if you base your theme on bootstrap, as it removes some glitches that are specific to markdown.io.
+
+By setting `StandaloneCss` to true, we tell markdown.io not to use any other style definitions from any theme. Setting it to false would allow you to extend a style already present (in a default theme) on markdown.io.
+
+Now create an `index.txt` file within your website's root folder with arbitrary markdown text to test your theme. Your root folder should now contain those files at least:
+
+	./config.json
+	./bootstrap.css
+	./index.txt
+
+### 3. Generate public link
+
+Let's say you are using dropbox, now generate a public link to the index.txt file and append it to http://markdown.io/ in your browser's address bar:
+
+	http://markdown.io/https://dl.dropbox.com/u/14469783/customtheme/index.txt
+
+And voilà, you should have your custom style applied to your website. Now go ahead and drop the bootstrap.css along with the config.json file into your existing markdown websites, and you are good to go.
+
+The are some more options you can tweak in config.json, [see it's documentation](configuration.txt#config.json).
+
+Overriding style definitions
+-----------------------------
+
+We now expand the example from above to override some style definitions from the bootstrap.css file. Therefore we create another .css file, let's call it custom.css:
+
+	/* change the font color of headings to red */
+	h1, h2, h3 {
+		color: red;
+	}	
+
+Add the custom.css to your website's root folder and add it to config.json accordingly:
+
+```
+{
+	"Css": [
+		"bootstrap.css",
+		"custom.css",
+		"http://assets.markdown.io/themes/bootstrap-assets/common.css"
+	],
+	"StandaloneCss": true
+}
+```
+
+Now visit your webpage again:
+
+	http://markdown.io/https://dl.dropbox.com/u/14469783/overridentheme/index.txt
+
+Attention: markdown.io utlizes caching to optimze page load speed. Reload the website in your browser, to have changes take effect.
+
+This way you can make small changes to a given bootstrap theme without going to the hassle of re-creating your own bootsrap.css file. If you set the `StandaloneCss` value to `false`, the overrides apply to the markdown.io theme selected.
+
+Adding Javascript
+-----------------
+
+The bootstrap-specific Javascript will always be loaded to a page, you don't have to include your own version. Additionally, jQuery is always added (currently branch 1.8.x) and scoped in the `$` and the `jQuery` global identifiers.
+
+To add custom Javascript, create a custom.js (you can choose another filename):
+
+
+```
+	$(document).ready (function () {
+		alert ("Hello world!");
+	});
+```
+
+and modify your config.json this way:
+
+```
+{
+	"Javascript": [
+		"custom.js"
+	],
+	"Css": [
+		"bootstrap.css",
+		"custom.css",
+		"http://assets.markdown.io/themes/bootstrap-assets/common.css"
+	],
+	"StandaloneCss": true
+
+}
+```
+
+Attention: Adding Javascript can mess with the page core functionality, since markdown.io relies heavily on Javascript to work. Additionally, this section is awfully under-documented.

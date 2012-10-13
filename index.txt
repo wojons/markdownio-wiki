@@ -1,0 +1,67 @@
+About
+=====
+
+markdown.io is a new technology that allows you to easily create websites, wikis and blogs without the need of HTML knowledge or any other complex web technologies. There is no need to own expensive webspace, and markdown.io itself is completely free to use.
+
+*Everyone using Dropbox, Wuala, or GitHub is already good to go!*
+
+Quick start
+-----------
+
+If you have no Idea what markdown.io is, or what Markdown is about, then you should read the [quick start](quickstart.txt) tutorial.
+
+Examples
+--------
+
+If you want to dive in directly, take a look at the [example websites](examples.txt). The markdown source of the websites is available at GitHub.
+
+About this Wiki
+---------------
+
+This wiki serves as a *complete reference* and should not be considered a beginners guide (read the [quick start tutorial](quickstart.txt) instead). 
+
+This wiki itself is written in Markdown and rendered through markdown.io. If you are already familiar with Markdown, but have no idea about how markdown.io can magically turn your Markdown into a website, the best way to learn is [to view the source of this wiki on github][githubwiki]. Once you get the drift, you can even send improvements to this wiki by sending pull requests on github!
+
+Credits
+-------
+
+markdown.io is a hobby project created and maintained by [Timo Dörr][timo]. It is written in C# and Javascript, and the source code is released under open source [GNU AGPLv3][agpl] license, and can be [forked at GitHub][githubcode].
+
+Markdown is a markup language invented by [John Gruber][johngruber] and you can learn more about it at his [website][daringfireball].
+
+Most of the beautiful HTML/CSS Themes are based on [twitter's bootstrap][bootstrap] and [Thomas Park's awesome set of free Themes for it][bootswatch].
+
+  [githubwiki]: http://github.com/Dynalon/mdown-wiki
+  [githubcode]: http://github.com/Dynalon/mdown
+  [johngruber]: http://twitter.com/gruber
+  [daringfireball]: http://daringfireball.net/projects/markdown/
+  [bootstrap]: http://getbootstrap.com
+  [bootswatch]: http://bootswatch.com
+  [timo]: https://twitter.com/timodoerr
+  [agpl]: http://www.gnu.org/licenses/agpl-3.0.html
+
+Besides those, markdown.io uses numerous awesome open source projects and technologies, which are credited below:
+
+* HTML front end:
+  * [twitter's bootstrap][bootstrap]
+  * [bootswatch][bootswatch]
+  * [jQuery][jquery]
+  * [colorbox.js][colorbox]
+  * [highlight.js][highlightjs]
+* Server backend:
+  * [Mono][mono]
+  * [Mono.Addins][mono-addins]
+  * [MarkdownSharp][mdsharp] 
+  * [log4net][log4net] 
+  * [JsonConfig][jsonconfig] 
+
+  [jquery]: http://www.jquery.com/
+  [colorbox]: http://www.jacklmoore.com/colorbox
+  [highlightjs]: http://softwaremaniacs.org/soft/highlight/en/
+  [bootstrap]: http://getbootstrap.com
+  [bootswatch]: http://bootswatch.com 
+  [mono]: http://www.mono-project.com/
+  [mono-addins]: http://monoaddins.codeplex.com/
+  [mdsharp]: http://code.google.com/p/markdownsharp/
+  [jsonconfig]: http://www.github.com/Dynalon/JsonConfig/
+  [log4net]: http://logging.apache.org/log4net/
