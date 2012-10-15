@@ -2,6 +2,7 @@
 [Quick start](quickstart.txt)
 [Syntax](syntax.txt)
 [Layout](layout.txt)
+[Examples](examples.txt)
 [Gimmicks](gimmicks.txt)
 [Configuration](configuration.txt)
 [Theming](theming.txt)
