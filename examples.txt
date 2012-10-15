@@ -4,7 +4,7 @@ Example websites
 
 This is a list of examples websites that are rendered via markdown.io. The full source of the websites is available at github.
 
-* [Simple travel blog website](http://examples.markdown.io/travel_blog/index.txt) [[Markdown source]](http://github.com/Dynalon/markdownio-examples)
-* [Sample Fansite about Muscle Cars](http://examples.markdown.io/muscle_cars/index.txt) 
+* [Coffee place website](http://examples.markdown.io/cafe/index.txt) [[Markdown source]](https://github.com/Dynalon/markdownio-examples/tree/master/cafe)
+* [Simple travel blog website](http://examples.markdown.io/travel_blog/index.txt) [[Markdown source]](https://github.com/Dynalon/markdownio-examples/tree/master/travel_blog)
+* [Sample Fansite about Muscle Cars](http://examples.markdown.io/muscle_cars/index.txt) [[Markdown source]](https://github.com/Dynalon/markdownio-examples/tree/master/muscle_cars)
 * This wiki, of course! [[Markdown source]](http://github.com/Dynalon/markdownio-wiki)
-
